@@ -4,12 +4,13 @@
 
 <Layout page='home'>
 	<h1>Great success!</h1>
-
 	<figure>
 		<img src='/great-success.png'>
 		<figcaption>HIGH FIVE!</figcaption>
 	</figure>
-
+<div class="flex justify-center">
+	<button  class="bg-green hover:bg-green-dark text-white font-bold py-2 px-4 rounded-full">Click Me!</button>
+</div>
 	<p><strong>Try editing this file (routes/index.html) to test hot module reloading.</strong></p>
 </Layout>
 
@@ -48,11 +49,14 @@
 </style>
 
 <script>
-	import Layout from './_components/Layout.html';
+import Layout from './_components/Layout.html';
 
 	export default {
 		components: {
 			Layout
+		},
+		preload(req) {
+//console.log(req)
 		}
 	};
 </script>

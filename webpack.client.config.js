@@ -3,7 +3,22 @@ const config = require('sapper/webpack/config.js');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
+// Cusstom
+const path = require("path");
+const glob = require("glob-all");
+const PurgecssPlugin = require("purgecss-webpack-plugin");
+
+class TailwindExtractor {
+	static extract(content) {
+	  return content.match(/[A-z0-9-:\/]+/g);
+	}
+  }
+// Custom ends
+
 const isDev = config.dev;
+
+
+
 
 module.exports = {
 	entry: config.client.entry(),
@@ -52,6 +67,17 @@ module.exports = {
 		new webpack.HotModuleReplacementPlugin()
 	] : [
 		new ExtractTextPlugin('main.css'),
+		// Custom
+		new PurgecssPlugin({
+			paths: glob.sync('routes/**/*.html'),
+			extractors: [
+			  {
+				extractor: TailwindExtractor,
+				extensions: ["html"]
+			  }
+			]
+		  }),
+		  //custom ends
 		new webpack.optimize.ModuleConcatenationPlugin(),
 		new UglifyJSPlugin()
 	]).filter(Boolean),

@@ -27,7 +27,12 @@
     "uglifyjs-webpack-plugin": "^1.1.5",
     "webpack": "^3.10.0"
   },
-   "engines": {
+  "engines": {
     "node": ">= 8"
+  },
+  "devDependencies": {
+    "glob-all": "^3.1.0",
+    "path": "^0.12.7",
+    "purgecss-webpack-plugin": "^0.18.0"
   }
 }
